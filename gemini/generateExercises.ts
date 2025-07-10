@@ -94,3 +94,6 @@ export const generateExercises = async (
 
   return response.text;
 };
+
+
+

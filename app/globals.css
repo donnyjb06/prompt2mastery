@@ -1,26 +1,53 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* 1️⃣ Override Tailwind’s dark: variant to use [data-theme="dark"] */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
+/* 2️⃣ Generate utilities that reference your CSS vars */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--clr-bg);
+  --color-surface: var(--clr-surface);
+  --color-highlight: var(--clr-highlight);
+  --color-text: var(--clr-text);
+  --color-subtext: var(--clr-subtext);
+  --color-primary: var(--clr-primary);
+  --color-accent: var(--clr-accent);
+  --color-success: var(--clr-success);
+  --color-warning: var(--clr-warning);
+  --color-error: var(--clr-error);
 }
 
-@media (prefers-color-scheme: dark) {
+/* 3️⃣ Assign your light/dark values and apply defaults in base layer */
+@layer base {
+  /* Light mode defaults */
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --clr-bg: hsl(0 0% 90%);
+    --clr-surface: hsl(0 0% 70%);
+    --clr-highlight: hsl(0 0% 50%);
+    --clr-text: hsl(0 0% 5%);
+    --clr-subtext: hsl(0 0% 10%);
+    --clr-primary: hsl(205 55% 50%);
+    --clr-accent: hsl(205 55% 20%);
+    --clr-success: hsl(95 73.7% 65%);
+    --clr-warning: hsl(64 73.7% 65%);
+    --clr-error: hsl(0 73.7% 65%);
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Dark mode overrides */
+  [data-theme='dark'] {
+    --clr-bg: hsl(0 0% 5%);
+    --clr-surface: hsl(0 0% 10%);
+    --clr-highlight: hsl(0 0% 20%);
+    --clr-text: hsl(0 0% 90%);
+    --clr-subtext: hsl(0 0% 50%);
+    /* leave primary/accent/etc. unchanged or tweak here */
+  }
+
+  /* Default application & smooth transition */
+  html {
+    @apply transition-colors duration-300;
+  }
+  body {
+    @apply bg-bg text-text;
+  }
 }
