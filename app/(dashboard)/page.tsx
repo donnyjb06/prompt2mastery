@@ -41,7 +41,7 @@ export default function Home() {
       </div>
       <button
         type='button'
-        className='ml-5 mt-5 bg-blue-950 px-5 py-2 rounded-md active:scale-95 hover:scale-105 transition-transform ease-initial duration-300 cursor-pointer'
+        className='text-primary'
         onClick={handleClick}
         disabled={isLoading}>
         {isLoading ? 'Loading...' : 'Submit'}
