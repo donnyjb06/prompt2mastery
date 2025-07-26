@@ -12,19 +12,19 @@ export const auth = betterAuth({
     }),
     emailAndPassword: {
       enabled: true,  
-      requireEmailVerification: true
+      requireEmailVerification: true,
+      autoSignIn: false,
     },
     emailVerification: {
       sendOnSignUp: true,
       autoSignInAfterVerification: true,
-      sendVerificationEmail: async ( { user, token }) => {
-        const verificationUrl = `${process.env.BETTER_AUTH_URL}/api/auth/verify-email?token=${token}&callbackUrl=${process.env.EMAIL_VERIFICATION_CALLBACK_URL}`
-
-        await sendEmail({to: user.email, subject: "Verify your email address", text: `Click the link to verify your email address: ${verificationUrl}`})
-      }
+      sendVerificationEmail: async ({url, user}) => {
+        await sendEmail(url, user)
+      },
     },
     socialProviders: {
       google: {
+        prompt: 'select_account',
         clientId: process.env.GOOGLE_CLIENT_ID as string,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
       }

@@ -1,3 +1,4 @@
+import AuthForm from '@/components/AuthForm/AuthForm'
 import { auth } from '@/utils/auth/auth'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
@@ -7,13 +8,12 @@ const page = async () => {
   const session = await auth.api.getSession({
       headers: await headers()
     })
-    console.log(session)
   
     if (session) {
       redirect("/dashboard")
     }
   return (
-    <div>page</div>
+    <main className='auth-screen'><AuthForm type='register'/></main>
   )
 }
 

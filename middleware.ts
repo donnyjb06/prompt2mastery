@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSessionCookie } from "better-auth/cookies"
 
-const authRoutes = ["/login", "register"]
+const authRoutes = ["/login", "/register"]
 
 export async function middleware(req: NextRequest) {
   const {nextUrl} = req;
+  const callbackUrl = encodeURIComponent(req.nextUrl.pathname + req.nextUrl.search)
 
   const sessionCookie = getSessionCookie(req)
 
@@ -13,12 +14,12 @@ export async function middleware(req: NextRequest) {
   const isLoggedIn = !!sessionCookie;
 
   if (nextUrl.pathname.startsWith("/dashboard") && !isLoggedIn) {
-    return NextResponse.redirect(new URL("/login", req.url))
+    return NextResponse.redirect(new URL(`/login?callbackUrl=${callbackUrl}`, req.url))
   }
   const isOnAuthRoute = authRoutes.includes(nextUrl.pathname)
 
   if (isOnAuthRoute && isLoggedIn) {
-    return NextResponse.redirect(new URL("/exercises", req.url))
+    return NextResponse.redirect(new URL(decodeURIComponent(callbackUrl), req.url))
   }
 
   return res

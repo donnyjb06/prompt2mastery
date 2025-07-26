@@ -131,6 +131,12 @@
 
 }
 
+@layer components {
+  .auth-screen {
+    @apply min-h-screen flex items-center justify-center;
+  }
+}
+
 .dark {
   --sidebar: hsl(240 5.9% 10%);
   --sidebar-foreground: hsl(240 4.8% 95.9%);

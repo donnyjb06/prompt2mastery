@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 interface Props {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
 }
 
@@ -10,4 +10,10 @@ type LanguageVersion = {
   version: string;
 };
 
-export type { Props, LanguageVersion };
+interface IFormInputs {
+  name?: string;
+  email: string;
+  password: string;
+}
+
+export type { Props, LanguageVersion, IFormInputs };

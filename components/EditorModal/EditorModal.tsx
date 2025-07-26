@@ -2,6 +2,8 @@
 import Modal from '../Modal';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '../ui/resizable';
 import { CodeEditor } from '../CodeEditor/CodeEditor';
+import Output from '../Output/Output';
+import Requirements from '../Requirements/Requirements';
 
 const EditorModal = () => {
   return (
@@ -15,7 +17,7 @@ const EditorModal = () => {
                 </ResizablePanel>
                 <ResizableHandle />
                 <ResizablePanel defaultSize={35} className='p-4' maxSize={50}>
-                  <div className='overflow-y-scroll h-full scrollbar px-4'></div>
+                  <Requirements />
                 </ResizablePanel>
               </ResizablePanelGroup>
             </ResizablePanel>
@@ -25,9 +27,7 @@ const EditorModal = () => {
               className='p-4'
               minSize={2}
               maxSize={50}>
-              <div className='overflow-y-scroll h-full scrollbar px-4'>
-                fiodanfds
-              </div>
+              <Output />
             </ResizablePanel>
           </ResizablePanelGroup>
         </Modal.Container>

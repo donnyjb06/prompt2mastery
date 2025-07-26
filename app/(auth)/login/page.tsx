@@ -1,20 +1,23 @@
-import { auth } from '@/utils/auth/auth'
-import { headers } from 'next/headers'
-import { redirect } from 'next/navigation'
-import React from 'react'
+import AuthForm from '@/components/AuthForm/AuthForm';
+import { auth } from '@/utils/auth/auth';
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
+import React from 'react';
 
 const page = async () => {
   const session = await auth.api.getSession({
-    headers: await headers()
-  })
+    headers: await headers(),
+  });
 
   if (session) {
-    redirect("/dashboard")
+    redirect('/dashboard');
   }
 
   return (
-    <div>page</div>
-  )
-}
+    <main className='auth-screen'>
+      <AuthForm type='login' />
+    </main>
+  );
+};
 
-export default page
+export default page;
