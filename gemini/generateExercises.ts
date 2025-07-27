@@ -28,7 +28,6 @@ export const generateExercises = async (
           Output should be **strictly in JSON**. The format must match exactly:
   
           \`\`\`json
-          [
             {
               "topic": "string (the topic name)",
               "language": "string (programming language of the topic)",
@@ -40,7 +39,6 @@ export const generateExercises = async (
                 }
               ]
             }
-          ]
           \`\`\`
           If the topic requested does not make sense or is not applicable in the selected programming language, return an error and don't return the previously mentioned JSON output.
   
