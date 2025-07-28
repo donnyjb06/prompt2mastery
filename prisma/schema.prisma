@@ -99,7 +99,7 @@ enum Language {
 model Topic {
   id        String     @id @default(uuid())
   userId    String
-  user      User       @relation(fields: [userId], references: [id])
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   topic     String
   questions Question[]
   feedback Feedback[]
@@ -111,7 +111,7 @@ model Topic {
 model Question {
   id              String @id @default(uuid())
   topicId         String
-  topic           Topic  @relation(fields: [topicId], references: [id])
+  topic           Topic  @relation(fields: [topicId], references: [id], onDelete: Cascade)
   questionNumber  Int
   boilerplateCode String
   requirements    String
@@ -122,12 +122,12 @@ model Question {
 model Feedback {
   id         String   @id @default(uuid())
   userId     String
-  user       User     @relation(fields: [userId], references: [id])
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   strengths  String[] @default([])
   weaknesses String[] @default([])
   score      Int
   topicId    String
-  topic      Topic    @relation(fields: [topicId], references: [id])
+  topic      Topic    @relation(fields: [topicId], references: [id], onDelete: Cascade)
 
   @@map("feedback")
 }
