@@ -24,6 +24,8 @@ export const generateExercises = async (
           - Include properly formatted ${language} boilerplate code with **2-space indentation** for any starter code or function signatures needed.
           - Provide precise, complete requirements describing what the student must implement or achieve in that exercise.
           - Requirements should be a clear, numbered list of steps if there are multiple sub-tasks. Use 1., 2., 3. formatting.
+          - Questions should be unique and not generic
+          - 
   
           Output should be **strictly in JSON**. The format must match exactly:
   
@@ -41,6 +43,10 @@ export const generateExercises = async (
             }
           \`\`\`
           If the topic requested does not make sense or is not applicable in the selected programming language, return an error and don't return the previously mentioned JSON output.
+          For instance, dictionaries are a python feature, same with lists. Structures are a C/C++ feature. The topic must match the language.
+          Only return exercises if the topic is natively supported and idiomatic in the selected language.
+
+          If the topic is borrowed from another language (e.g. "dictionaries" in JavaScript), treat it as invalid and return an error.
   
           The format for the error must match exactly:
   
