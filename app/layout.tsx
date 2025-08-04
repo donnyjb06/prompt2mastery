@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import ThemeProvider from '@/theme/Theme.provider';
 import { Toaster } from '@/components/ui/sonner';
+import { ScrollProgress } from '@/components/ui/scroll-progress';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -27,8 +28,34 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}>
-        <ThemeProvider>{children}<Toaster /></ThemeProvider>
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen relative`}>
+        <ThemeProvider>
+          <ScrollProgress
+            className='fixed top-0 h-0.5 bg-[linear-gradient(to_right,rgba(0,0,0,0),#111111_75%,#111111_100%)] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0),#ffffff_75%,#ffffff_100%)]'
+            springOptions={{
+              stiffness: 280,
+              damping: 18,
+              mass: 0.3,
+            }}
+          />
+          <div className='min-h-full w-full absolute inset-0 bg-black overflow-hidden z-[-1]'>
+            {/* Prismatic Aurora Burst - Multi-layered Gradient */}
+            <div
+              className='absolute inset-0 z-0'
+              style={{
+                background: `
+          radial-gradient(ellipse 120% 80% at 70% 20%, rgba(255, 20, 147, 0.15), transparent 50%),
+          radial-gradient(ellipse 100% 60% at 30% 10%, rgba(0, 255, 255, 0.12), transparent 60%),
+          radial-gradient(ellipse 90% 70% at 50% 0%, rgba(138, 43, 226, 0.18), transparent 65%),
+          radial-gradient(ellipse 110% 50% at 80% 30%, rgba(255, 215, 0, 0.08), transparent 40%),
+          var(--background)
+        `,
+              }}
+            />
+          </div>
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );
