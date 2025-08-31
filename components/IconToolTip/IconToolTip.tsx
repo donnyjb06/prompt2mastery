@@ -8,8 +8,8 @@ interface IconToolTipProps extends Props {
 const IconToolTip = ({ languageDetails }: IconToolTipProps) => {
   return (
     <Tooltip>
-      <TooltipTrigger>{languageDetails.icon}</TooltipTrigger>
-      <TooltipContent className='text-foreground'>{languageDetails.language}</TooltipContent>
+      <TooltipTrigger><languageDetails.icon size={50}/></TooltipTrigger>
+      <TooltipContent >{languageDetails.language}</TooltipContent>
     </Tooltip>
   );
 };
