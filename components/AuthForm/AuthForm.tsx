@@ -43,8 +43,9 @@ const AuthForm: FC<AuthFormProps> = ({ type }) => {
               name='name'
               control={control}
               type='text'
-              label='Full Name'>
-              className={errors.name ? 'text-red-400' : ''}
+              label='Full Name'
+              className={errors.name ? 'text-red-400' : ''}>
+              
               <ValidationError error={errors.name?.message} />
             </FormField>
             <FormField
@@ -70,7 +71,7 @@ const AuthForm: FC<AuthFormProps> = ({ type }) => {
           size='default'
           variant='default'
           disabled={loading}
-          className='bg-sidebar-primary text-foreground cursor-pointer hover:bg-muted-foreground hover:scale-105 active:scale-95 mt-5'>
+          className='bg-foreground text-background cursor-pointer hover:bg-muted-foreground hover:scale-105 active:scale-95 mt-5'>
           {loading ?
             <PulseLoader
               color='#ffffff'
