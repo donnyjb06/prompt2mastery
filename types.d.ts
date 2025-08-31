@@ -10,37 +10,37 @@ const topicWithQuestions = Prisma.validator<Prisma.TopicDefaultArgs>()({
       select: {
         questionNumber: true,
         boilerplateCode: true,
-        requirements: true
-      }
-    }
-  }
+        requirements: true,
+      },
+    },
+  },
 });
 
 type TopicWithQuestions = Prisma.TopicGetPayload<typeof topicWithQuestions>;
 
-const fullTopicType = Prisma.validator<Prisma.TopicDefaultArgs>() ({
+const fullTopicType = Prisma.validator<Prisma.TopicDefaultArgs>()({
   include: {
     feedback: true,
-    questions: true
-  }
-})
+    questions: true,
+  },
+});
 
-type FullTopicType = Prisma.TopicGetPayload<typeof fullTopicType>
+type FullTopicType = Prisma.TopicGetPayload<typeof fullTopicType>;
 
 const feedbackWithoutId = Prisma.validator<Prisma.FeedbackDefaultArgs>()({
   select: {
     strengths: true,
     weaknesses: true,
     score: true,
-  }
-})
+  },
+});
 
-type FeedbackWithoutId = Prisma.FeedbackGetPayload<typeof feedbackWithoutId>
+type FeedbackWithoutId = Prisma.FeedbackGetPayload<typeof feedbackWithoutId>;
 
 interface GeminiTopicError {
-  error: string,
-  language: string,
-  topic: string
+  error: string;
+  language: string;
+  topic: string;
 }
 
 interface Props {
@@ -59,4 +59,18 @@ interface IFormInputs {
   password: string;
 }
 
-export type { Props, LanguageVersion, IFormInputs, TopicWithQuestions, GeminiTopicError, FeedbackWithoutId, FullTopicType };
+type LanguageToolTip = {
+  language: string;
+  icon: JSX.Element;
+};
+
+export type {
+  Props,
+  LanguageVersion,
+  IFormInputs,
+  TopicWithQuestions,
+  GeminiTopicError,
+  FeedbackWithoutId,
+  FullTopicType,
+  LanguageToolTip,
+};
