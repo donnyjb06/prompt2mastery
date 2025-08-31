@@ -1,14 +1,12 @@
 @import 'tailwindcss';
 @custom-variant dark (&:where(.dark, .dark *));
 
-
-@import "tw-animate-css";
+@import 'tw-animate-css';
 @plugin "tailwind-scrollbar" {
   nocompatible: true;
 }
 
 /* 1️⃣ Override Tailwind’s dark: variant to use [data-theme="dark"] */
-
 
 /* 2️⃣ Generate utilities that reference your CSS vars */
 @theme inline {
@@ -49,7 +47,6 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 }
-
 
 :root {
   --radius: 0.625rem;
@@ -127,8 +124,6 @@
   body {
     @apply bg-background text-foreground;
   }
-
-
 }
 
 @layer components {
