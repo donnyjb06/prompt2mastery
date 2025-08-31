@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, ReactNode } from "react";
+import { useState, useEffect, ReactNode, useRef } from "react";
 import { ThemeContext } from "./Theme.context";
 import { Theme, ThemeProviderProps } from "./types";
 import { FC } from "react";
@@ -8,6 +8,7 @@ import { getInitialTheme } from "./utils";
 
 const ThemeProvider: FC<ThemeProviderProps> = ({children}) => {
   const [theme, setTheme] = useState<Theme>("light")
+  const hasRun = useRef<boolean>(false)
 
   useEffect(() => {
     const initial = getInitialTheme();
@@ -15,6 +16,11 @@ const ThemeProvider: FC<ThemeProviderProps> = ({children}) => {
   }, [])
 
   useEffect(() => {
+    if (!hasRun.current) {
+      hasRun.current = true
+      return
+    }
+
     if (theme === "light") {
       document.documentElement.classList.remove("dark")
       localStorage.setItem("theme", "light")
