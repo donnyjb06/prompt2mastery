@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { Language } from './generated/prisma';
 import { Prisma } from '@/generated/prisma';
 
 const topicWithQuestions = Prisma.validator<Prisma.TopicDefaultArgs>()({
