@@ -1,7 +1,5 @@
 'use server';
-
 import { ai } from './geminiClient';
-import { Type } from '@google/genai';
 
 export const generateExercises = async (
   amountOfExercises: number = 5,
