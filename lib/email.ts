@@ -1,6 +1,5 @@
 import { Email } from "@/components/Email/Email";
 import { Session } from "@/utils/auth/auth-client";
-import { User } from "lucide-react";
 import {Resend} from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
